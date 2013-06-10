@@ -25,7 +25,7 @@ class FineUploader extends Input
 	/**
 	 * @var string the HTML tag to render the uploader to
 	 */
-	public $tagName = 'div';
+	public $tag = 'div';
 	/**
 	 * @var string text to display if javascript is disabled
 	 */
@@ -79,7 +79,7 @@ class FineUploader extends Input
 	 */
 	public function renderTag()
 	{
-		echo \CHtml::tag($this->tagName, $this->options, '<noscript>' . $this->noScriptText . '</noscript>', true);
+		echo \CHtml::tag($this->tag, $this->options, '<noscript>' . $this->noScriptText . '</noscript>', true);
 	}
 
 	/**

@@ -20,7 +20,7 @@ class Sparklines extends Widget
 	 * @var string the tag name to render the sparkline to
 	 * NOTE: span type of tag may have issues.
 	 */
-	public $tagName = 'div';
+	public $tag = 'div';
 	/**
 	 * @var array the data to show on the chart
 	 * @see http://omnipotent.net/jquery.sparkline/#s-about
@@ -53,8 +53,8 @@ class Sparklines extends Widget
 	 */
 	public function renderContainer()
 	{
-		echo \CHtml::openTag($this->tagName, $this->options);
-		echo \CHtml::closeTag($this->tagName);
+		echo \CHtml::openTag($this->tag, $this->options);
+		echo \CHtml::closeTag($this->tag);
 	}
 
 	/**
