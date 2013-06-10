@@ -142,16 +142,16 @@ class ToggleButton extends Input
 		$onChange = ArrayHelper::remove($this->clientEvents, 'onChange', 'js:$.noop');
 
 		$config = array(
-			'onChange'        => $onChange,
-			'width'           => $this->width,
-			'height'          => $this->height,
-			'animated'        => $this->animated,
+			'onChange' => $onChange,
+			'width' => $this->width,
+			'height' => $this->height,
+			'animated' => $this->animated,
 			'transitionSpeed' => $this->transitionSpeed,
-			'label'           => array(
-				'enabled'  => $this->onLabel,
+			'label' => array(
+				'enabled' => $this->onLabel,
 				'disabled' => $this->offLabel
 			),
-			'style'           => array()
+			'style' => array()
 		);
 		if (!empty($this->enabledStyle)) {
 			$config['style']['enabled'] = $this->enabledStyle;

@@ -46,12 +46,12 @@ use wheels\helpers\ArrayHelper;
 class WhHighCharts extends Widget
 {
 
-    /**
-     * Widget's initialization method
-     */
-    public function init()
-    {
-        parent::init();
+	/**
+	 * Widget's initialization method
+	 */
+	public function init()
+	{
+		parent::init();
 		// if there is no renderTo id, build the layer with current id and initialize renderTo option
 		if (!isset($this->clientOptions['chart']) || !isset($this->clientOptions['chart']['renderTo'])) {
 			echo \CHtml::tag('div', $this->options);
@@ -61,42 +61,42 @@ class WhHighCharts extends Widget
 				$this->clientOptions['chart'] = array('renderTo' => $this->options['id']);
 			}
 		}
-    }
+	}
 
-    /**
-     * Renders the widget.
-     */
-    public function run()
-    {
-        $this->registerClientScript();
-    }
+	/**
+	 * Renders the widget.
+	 */
+	public function run()
+	{
+		$this->registerClientScript();
+	}
 
-    /**
-     * Publishes and registers the necessary script files.
-     */
-    protected function registerClientScript()
-    {
+	/**
+	 * Publishes and registers the necessary script files.
+	 */
+	protected function registerClientScript()
+	{
 		/* publish assets dir */
 		$assetsUrl = $this->getAssetsUrl('wheels.widgets.assets.highcharts');
 
-        /* @var $cs CClientScript */
-        $cs = \Yii::app()->getClientScript();
-        $cs->registerScriptFile($assetsUrl . '/js/highcharts.js');
+		/* @var $cs CClientScript */
+		$cs = \Yii::app()->getClientScript();
+		$cs->registerScriptFile($assetsUrl . '/js/highcharts.js');
 
-        /* register required files */
-        $defaultOptions = array('exporting' => array('enabled' => true));
-        $this->clientOptions = ArrayHelper::merge($defaultOptions, $this->clientOptions);
+		/* register required files */
+		$defaultOptions = array('exporting' => array('enabled' => true));
+		$this->clientOptions = ArrayHelper::merge($defaultOptions, $this->clientOptions);
 
-        if (isset($this->clientOptions['exporting']) && @$this->clientOptions['exporting']['enabled']) {
-            $cs->registerScriptFile($assetsUrl . '/js/modules/exporting.js');
-        }
-        if ($theme = ArrayHelper::getValue($this->clientOptions, 'theme')) {
-            $cs->registerScriptFile($assetsUrl . '/js/themes/' . $theme . '.js');
-        }
+		if (isset($this->clientOptions['exporting']) && @$this->clientOptions['exporting']['enabled']) {
+			$cs->registerScriptFile($assetsUrl . '/js/modules/exporting.js');
+		}
+		if ($theme = ArrayHelper::getValue($this->clientOptions, 'theme')) {
+			$cs->registerScriptFile($assetsUrl . '/js/themes/' . $theme . '.js');
+		}
 
-        $options = \CJavaScript::encode($this->clientOptions);
+		$options = \CJavaScript::encode($this->clientOptions);
 		$script = "var highchart{$this->options['id']} = new Highcharts.Chart({$options});";
 
-        $cs->registerScript(md5($script), $script);
-    }
+		$cs->registerScript(md5($script), $script);
+	}
 }

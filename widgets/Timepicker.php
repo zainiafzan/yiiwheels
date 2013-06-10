@@ -16,39 +16,39 @@ namespace wheels\widgets;
  */
 class Timepicker extends Input
 {
-    /**
-     * Runs the widget.
-     */
-    public function run()
-    {
-        $this->renderField();
-        $this->registerClientScript();
-    }
+	/**
+	 * Runs the widget.
+	 */
+	public function run()
+	{
+		$this->renderField();
+		$this->registerClientScript();
+	}
 
-    /**
-     * Renders the field
-     */
-    public function renderField()
-    {
-        echo \CHtml::openTag('span', array('class'=>'bootstrap-timepicker'));
-        parent::renderField();
-        echo \CHtml::closeTag('span');
-    }
+	/**
+	 * Renders the field
+	 */
+	public function renderField()
+	{
+		echo \CHtml::openTag('span', array('class' => 'bootstrap-timepicker'));
+		parent::renderField();
+		echo \CHtml::closeTag('span');
+	}
 
-    /**
-     * Registers required javascript files
-     */
-    public function registerClientScript()
-    {
+	/**
+	 * Registers required javascript files
+	 */
+	public function registerClientScript()
+	{
 		/* publish assets dir */
 		$assetsUrl = $this->getAssetsUrl('wheels.widgets.assets.timepicker');
 
 		/* @var $cs \CClientScript */
 		$cs = \Yii::app()->getClientScript();
 
-        $cs->registerCssFile($assetsUrl . '/css/bootstrap-timepicker.min.css')
+		$cs->registerCssFile($assetsUrl . '/css/bootstrap-timepicker.min.css')
 			->registerScriptFile($assetsUrl . '/js/bootstrap-timepicker.min.js');
 
-        $this->registerPlugin('timepicker');
-    }
+		$this->registerPlugin('timepicker');
+	}
 }

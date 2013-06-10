@@ -97,7 +97,7 @@ class FileuploadX extends Fileupload
 	public function renderViews()
 	{
 		$htmlOptions = array();
-		$htmlOptions['multiple'] = ArrayHelper::remove($this->options, 'multiple','');
+		$htmlOptions['multiple'] = ArrayHelper::remove($this->options, 'multiple', '');
 		$htmlOptions['name'] = ArrayHelper::remove($this->options, 'name');
 		$this->render($this->uploadView);
 		$this->render($this->downloadView);

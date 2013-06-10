@@ -18,29 +18,29 @@ namespace wheels\widgets;
 class WhMaskMoney extends Input
 {
 
-    /**
-     * Runs the widget.
-     */
-    public function run()
-    {
-        $this->renderField();
-        $this->registerClientScript();
-    }
+	/**
+	 * Runs the widget.
+	 */
+	public function run()
+	{
+		$this->renderField();
+		$this->registerClientScript();
+	}
 
-    /**
-     * Registers required client script for bootstrap multiselect. It is not used through bootstrap->registerPlugin
-     * in order to attach events if any
-     */
-    public function registerClientScript()
-    {
+	/**
+	 * Registers required client script for bootstrap multiselect. It is not used through bootstrap->registerPlugin
+	 * in order to attach events if any
+	 */
+	public function registerClientScript()
+	{
 		/* publish assets dir */
 		$assetsUrl = $this->getAssetsUrl('wheels.widgets.assets.maskmoney');
 
-        /* @var $cs CClientScript */
-        $cs = \Yii::app()->getClientScript();
+		/* @var $cs CClientScript */
+		$cs = \Yii::app()->getClientScript();
 
-        $cs->registerScriptFile($assetsUrl . '/js/jquery.maskmoney.js');
+		$cs->registerScriptFile($assetsUrl . '/js/jquery.maskmoney.js');
 
 		$this->registerPlugin('maskMoney');
-    }
+	}
 }

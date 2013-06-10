@@ -18,57 +18,58 @@ use wheels\helpers\ArrayHelper;
  */
 class SwitchButton extends Input
 {
-    /**
-     * @var bool whether to use animation or not
-     */
-    public $animated = true;
-    /**
-     * @var string the label to display on the enabled side
-     */
-    public $onLabel = 'ON';
-    /**
-     * @var string the label to display on the disabled side
-     */
-    public $offLabel = 'OFF';
-    /**
-     * @var string the style of the toggle button enable style
-     * Accepted values ["primary", "danger", "info", "success", "warning"] or nothing
-     */
-    public $onStyle = 'primary';
-    /**
-     * @var string the style of the toggle button disabled style
-     * Accepted values ["primary", "danger", "info", "success", "warning"] or nothing
-     */
-    public $offStyle = 'danger';
+	/**
+	 * @var bool whether to use animation or not
+	 */
+	public $animated = true;
+	/**
+	 * @var string the label to display on the enabled side
+	 */
+	public $onLabel = 'ON';
+	/**
+	 * @var string the label to display on the disabled side
+	 */
+	public $offLabel = 'OFF';
+	/**
+	 * @var string the style of the toggle button enable style
+	 * Accepted values ["primary", "danger", "info", "success", "warning"] or nothing
+	 */
+	public $onStyle = 'primary';
+	/**
+	 * @var string the style of the toggle button disabled style
+	 * Accepted values ["primary", "danger", "info", "success", "warning"] or nothing
+	 */
+	public $offStyle = 'danger';
 
 	/**
-     * Widget's run function
-     */
-    public function run()
-    {
-        $this->renderField();
-        $this->registerClientScript();
-    }
+	 * Widget's run function
+	 */
+	public function run()
+	{
+		$this->renderField();
+		$this->registerClientScript();
+	}
 
-    /**
-     * Renders the input field
-     */
-    public function renderField()
-    {
+	/**
+	 * Renders the input field
+	 */
+	public function renderField()
+	{
 		$options = $this->buildOptions();
 		echo \CHtml::openTag('div', $options);
-        if ($this->hasModel()) {
-            echo \CHtml::activeCheckBox($this->model, $this->attribute, $this->options);
-        } else {
-            echo \CHtml::checkBox($this->options['name'], $this->value, $this->options);
-        }
+		if ($this->hasModel()) {
+			echo \CHtml::activeCheckBox($this->model, $this->attribute, $this->options);
+		} else {
+			echo \CHtml::checkBox($this->options['name'], $this->value, $this->options);
+		}
 		echo \CHtml::closeTag('div');
-    }
+	}
 
 	/**
 	 * Builds meta-tag options based on the options and attributes
 	 */
-	public function buildOptions(){
+	public function buildOptions()
+	{
 		$options = $this->options;
 		ArrayHelper::remove($this->options, 'disabled');
 		$this->addCssClass($options, 'switch');
@@ -80,10 +81,10 @@ class SwitchButton extends Input
 	}
 
 	/**
-     * Registers client scripts
-     */
-    protected function registerClientScript()
-    {
+	 * Registers client scripts
+	 */
+	protected function registerClientScript()
+	{
 
 		/* publish assets dir */
 		$assetsUrl = $this->getAssetsUrl('wheels.widgets.assets.toggle');
@@ -91,8 +92,8 @@ class SwitchButton extends Input
 		/* @var $cs \CClientScript */
 		$cs = \Yii::app()->getClientScript();
 
-        $cs->registerCoreScript('jquery')
+		$cs->registerCoreScript('jquery')
 			->registerCssFile($assetsUrl . '/css/bootstrapSwitch.css')
 			->registerScriptFile($assetsUrl . '/js/bootstrapSwitch.js');
-    }
+	}
 }

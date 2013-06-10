@@ -67,7 +67,7 @@ class Redactor extends Input
 		/* @var $cs CClientScript */
 		$cs = \Yii::app()->getClientScript();
 
-		$script =  YII_DEBUG ? 'redactor.js' : 'redactor.min.js';
+		$script = YII_DEBUG ? 'redactor.js' : 'redactor.min.js';
 
 		$cs->registerCssFile($assetsUrl . '/css/redactor.css')
 			->registerScriptFile($assetsUrl . '/js/' . $script);

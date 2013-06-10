@@ -48,7 +48,7 @@ class Widget extends \CWidget
 			$this->options['id'] = $this->getId();
 		}
 		// ensure alias
-		if(\Yii::getPathOfAlias('wheels')===false){
+		if (\Yii::getPathOfAlias('wheels') === false) {
 			\Yii::setPathOfAlias('wheels', realpath(dirname(__FILE__) . '/../'));
 		}
 	}
@@ -118,7 +118,7 @@ class Widget extends \CWidget
 	 * @param string $alias the path to look for the assets to publish.
 	 * @return string the url.
 	 */
-	protected function getAssetsUrl($alias='')
+	protected function getAssetsUrl($alias = '')
 	{
 		if (isset($this->_assetsUrl))
 			return $this->_assetsUrl;

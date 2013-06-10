@@ -19,28 +19,28 @@ use wheels\helpers\ArrayHelper;
  */
 class DetailView extends \CDetailView
 {
-    /**
-     * @var string|array the table type.
-     * Valid values are `table-striped`, `table-bordered`, `table-condensed`, 'table-hover
-     */
-    public $type = array('striped', 'condensed');
+	/**
+	 * @var string|array the table type.
+	 * Valid values are `table-striped`, `table-bordered`, `table-condensed`, 'table-hover
+	 */
+	public $type = array('striped', 'condensed');
 
-    /**
-     * Initializes the widget.
-     */
-    public function init()
-    {
-        parent::init();
+	/**
+	 * Initializes the widget.
+	 */
+	public function init()
+	{
+		parent::init();
 
-        $classes = array('table');
+		$classes = array('table');
 
-        if (isset($this->type) && !empty($this->type)) {
-            if (is_string($this->type)) {
-                $this->type = explode(' ', $this->type);
-            }
-        }
+		if (isset($this->type) && !empty($this->type)) {
+			if (is_string($this->type)) {
+				$this->type = explode(' ', $this->type);
+			}
+		}
 		$this->addCssClass(implode(' ', $classes));
-    }
+	}
 
 	/**
 	 * Adds a CSS class to the specified options.

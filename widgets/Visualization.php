@@ -45,7 +45,8 @@ class Visualization extends Widget
 	/**
 	 * Renders container where to allocate the chart.
 	 */
-	public function renderContainer(){
+	public function renderContainer()
+	{
 		// if no container is set, it will create one
 		if ($this->containerId == null) {
 			$this->containerId = 'div-chart' . $this->options['id'];
@@ -58,8 +59,8 @@ class Visualization extends Widget
 	 */
 	public function registerClientScript()
 	{
-		$id        = $this->options['id'];
-		$jsData    = \CJavaScript::jsonEncode($this->data);
+		$id = $this->options['id'];
+		$jsData = \CJavaScript::jsonEncode($this->data);
 		$jsOptions = \CJavaScript::jsonEncode($this->options);
 
 		$script = "

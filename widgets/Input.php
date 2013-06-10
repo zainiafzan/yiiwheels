@@ -37,7 +37,8 @@ class Input extends Widget
 	/**
 	 * Widget's init function.
 	 */
-	public function init(){
+	public function init()
+	{
 
 		parent::init();
 		list($name, $id) = $this->resolveNameID();
@@ -65,24 +66,21 @@ class Input extends Widget
 	 */
 	protected function resolveNameID()
 	{
-		if($this->name!==null)
-			$name=$this->name;
-		elseif(isset($this->options['name']))
-			$name=$this->options['name'];
-		elseif($this->hasModel())
-			$name=\CHtml::activeName($this->model,$this->attribute);
-		else
-			throw new \CException(\Yii::t('wheels','{class} must specify "model" and "attribute" or "name" property values.',array('{class}'=>get_class($this))));
+		if ($this->name !== null)
+			$name = $this->name;
+		elseif (isset($this->options['name']))
+			$name = $this->options['name']; elseif ($this->hasModel())
+			$name = \CHtml::activeName($this->model, $this->attribute); else
+			throw new \CException(\Yii::t('wheels', '{class} must specify "model" and "attribute" or "name" property values.', array('{class}' => get_class($this))));
 
-		if(($id=$this->getId(false))===null)
-		{
-			if(isset($this->options['id']))
-				$id=$this->options['id'];
+		if (($id = $this->getId(false)) === null) {
+			if (isset($this->options['id']))
+				$id = $this->options['id'];
 			else
-				$id=\CHtml::getIdByName($name);
+				$id = \CHtml::getIdByName($name);
 		}
 
-		return array($name,$id);
+		return array($name, $id);
 	}
 
 	/**
@@ -90,6 +88,6 @@ class Input extends Widget
 	 */
 	protected function hasModel()
 	{
-		return $this->model instanceof \CModel && $this->attribute!==null;
+		return $this->model instanceof \CModel && $this->attribute !== null;
 	}
 }
