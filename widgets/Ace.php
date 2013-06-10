@@ -9,7 +9,7 @@ namespace wheels\widgets;
 use wheels\helpers\ArrayHelper;
 
 /**
- * Ace
+ * wheels\widgets\Ace
  * @ssee https://github.com/ajaxorg/ace
  * @author Antonio Ramirez <amigo.cobos@gmail.com>
  * @package wheels\widgets

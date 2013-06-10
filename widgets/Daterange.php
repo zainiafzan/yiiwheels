@@ -9,7 +9,7 @@ namespace wheels\widgets;
 use wheels\helpers\ArrayHelper;
 
 /**
- * Daterange
+ * wheels\widgets\Daterange
  * @ssee https://github.com/dangrossman/bootstrap-daterangepicker
  * @author Antonio Ramirez <amigo.cobos@gmail.com>
  * @package wheels\widgets
@@ -51,18 +51,7 @@ class Daterange extends Input
 	public function renderField()
 	{
 		if (null === $this->selector) {
-			list($name, $id) = $this->resolveNameID();
-
-			$this->options['id'] = ArrayHelper::getValue($this->options, 'id', $id);
-			$this->options['name'] = ArrayHelper::getValue($this->options, 'name', $name);
-
-			if ($this->hasModel()) {
-				echo \CHtml::activeTextField($this->model, $this->attribute, $this->options);
-
-			} else {
-				echo \CHtml::textField($name, $this->value, $this->options);
-			}
-
+			parent::renderField();
 			$this->setLocaleSettings();
 		}
 	}
@@ -116,7 +105,7 @@ class Daterange extends Input
 		$cs = \Yii::app()->getClientScript();
 		/* register required moment.js */
 		$cs->registerScriptFile($this->getVendorAssetsUrl() . '/js/moment.min.js', \CClientScript::POS_END);
-		$cs->registerScriptFile($assetsUrl . '/js/daterangepicker.js', CClientScript::POS_END);
+		$cs->registerScriptFile($assetsUrl . '/js/daterangepicker.js', \CClientScript::POS_END);
 		$cs->registerCssFile($assetsUrl . '/css/daterangepicker.css');
 
 		$callback = ($this->callback instanceof \CJavaScriptExpression)
@@ -124,7 +113,7 @@ class Daterange extends Input
 			: ($this->callback === null ? '' : new \CJavaScriptExpression($this->callback));
 
 		$js = '$("#' . $this->options['id'] . '").daterangepicker(' .
-			CJavaScript::encode($this->clientOptions) .
+			\CJavaScript::encode($this->clientOptions) .
 			($callback ? ', ' . \CJavaScript::encode($callback) : '') .
 			');';
 

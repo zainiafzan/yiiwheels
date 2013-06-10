@@ -11,7 +11,7 @@ use wheels\helpers\ArrayHelper;
 \Yii::import('zii.widgets.CDetailView');
 
 /**
- * DetailView
+ * wheels\widgets\DetailView
  * @ssee https://github.com/ajaxorg/ace
  * @author Antonio Ramirez <amigo.cobos@gmail.com>
  * @package wheels\widgets

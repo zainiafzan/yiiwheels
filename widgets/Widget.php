@@ -130,21 +130,20 @@ class Widget extends \CWidget
 	}
 
 	/**
-	 * Registers a css file
+	 * Registers a css file.
 	 * @param string $filename the css file to register
-	 * @param string $alias the alias where to find the file
+	 * @param string $alias the route alias where to find the file.
 	 */
-	protected function registerCss($fileName, $alias = '')
+	protected function registerCss($filename, $alias = '')
 	{
 		/* @var  \CClientScript $cs */
 		$cs = \Yii::app()->clientScript;
-		$url = $this->getAssetsUrl($alias) . '/css/' . $fileName;
+		$url = $this->getAssetsUrl($alias) . '/css/' . $filename;
 		$cs->registerCssFile($url);
 	}
 
 	/**
 	 * Returns the url to the published assets folder.
-	 * @param string $alias the path to look for the assets to publish.
 	 * @return string the url.
 	 */
 	protected function getVendorAssetsUrl()
@@ -162,11 +161,11 @@ class Widget extends \CWidget
 	 * Registers a css file
 	 * @param string $filename the css file to register
 	 */
-	protected function registerVendorCss($fileName)
+	protected function registerVendorCss($filename)
 	{
 		/* @var  \CClientScript $cs */
 		$cs = \Yii::app()->clientScript;
-		$url = $this->getVendorAssetsUrl() . '/css/' . $fileName;
+		$url = $this->getVendorAssetsUrl() . '/css/' . $filename;
 		$cs->registerCssFile($url);
 	}
 }

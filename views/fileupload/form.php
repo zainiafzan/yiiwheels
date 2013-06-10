@@ -1,5 +1,5 @@
 <!-- The file upload form used as target for the file upload widget -->
-<?php echo CHtml::beginForm($this->url, 'post', $this->htmlOptions); ?>
+<?php echo CHtml::beginForm($this->url, 'post', $this->options); ?>
 <div class="fileupload-buttonbar">
 	<div class="span7">
 		<!-- The fileinput-button span is used to style the file input field as button -->

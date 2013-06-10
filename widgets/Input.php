@@ -6,6 +6,8 @@
  */
 namespace wheels\widgets;
 
+use wheels\helpers\ArrayHelper;
+
 /**
  * wheels\widgets\Input is the base class for all widgets that collect user inputs.
  * @author Antonio Ramirez <amigo.cobos@gmail.com>
@@ -31,6 +33,32 @@ class Input extends Widget
 	 */
 	public $value;
 
+
+	/**
+	 * Widget's init function.
+	 */
+	public function init(){
+
+		parent::init();
+		list($name, $id) = $this->resolveNameID();
+
+		$this->options['id'] = ArrayHelper::getValue($this->options, 'id', $id);
+		$this->options['name'] = ArrayHelper::getValue($this->options, 'name', $name);
+	}
+
+	/**
+	 * Renders field
+	 */
+	public function renderField()
+	{
+		if ($this->hasModel()) {
+			echo \CHtml::activeTextField($this->model, $this->attribute, $this->options);
+
+		} else {
+			echo \CHtml::textField($this->options['name'], $this->value, $this->options);
+		}
+	}
+
 	/**
 	 * @return array the name and the ID of the input.
 	 * @throws \CException
@@ -44,14 +72,14 @@ class Input extends Widget
 		elseif($this->hasModel())
 			$name=\CHtml::activeName($this->model,$this->attribute);
 		else
-			throw new \CException(Yii::t('wheels','{class} must specify "model" and "attribute" or "name" property values.',array('{class}'=>get_class($this))));
+			throw new \CException(\Yii::t('wheels','{class} must specify "model" and "attribute" or "name" property values.',array('{class}'=>get_class($this))));
 
 		if(($id=$this->getId(false))===null)
 		{
 			if(isset($this->options['id']))
 				$id=$this->options['id'];
 			else
-				$id=CHtml::getIdByName($name);
+				$id=\CHtml::getIdByName($name);
 		}
 
 		return array($name,$id);

@@ -9,7 +9,7 @@ namespace wheels\widgets;
 use wheels\helpers\ArrayHelper;
 
 /**
- * Datepicker
+ * wheels\widgets\Datepicker
  * @ssee https://github.com/eternicode/bootstrap-datepicker
  * @author Antonio Ramirez <amigo.cobos@gmail.com>
  * @package wheels\widgets
@@ -48,39 +48,18 @@ class Datepicker extends Input
 	}
 
 	/**
-	 * Renders field
-	 */
-	public function renderField()
-	{
-		list($name, $id) = $this->resolveNameID();
-
-		$this->options['id'] = ArrayHelper::getValue($this->options, 'id', $id);
-		$this->options['name'] = ArrayHelper::getValue($this->options, 'name', $name);
-
-		if ($this->hasModel()) {
-			echo \CHtml::activeTextField($this->model, $this->attribute, $this->options);
-
-		} else {
-			echo \CHtml::textField($name, $this->value, $this->options);
-		}
-	}
-
-	/**
 	 * Registers required client script for bootstrap datepicker.
 	 */
 	public function registerClientScript()
 	{
-		/* publish assets dir */
-		$assetsUrl = $this->getAssetsUrl('wheels.widgets.assets.datepicker');
-
 		/* @var $cs \CClientScript */
 		$cs = \Yii::app()->getClientScript();
-		$this->registerCss('datepicker.css');
+		$this->registerCss('datepicker.css', 'wheels.widgets.assets.datepicker');
 
-		$cs->registerScriptFile($assetsUrl . '/js/bootstrap-datepicker.js');
+		$cs->registerScriptFile($this->getAssetsUrl() . '/js/bootstrap-datepicker.js');
 		if ($language = ArrayHelper::getValue($this->clientOptions, 'language')) {
 			$cs->registerScriptFile(
-				$assetsUrl . '/js/locales/bootstrap-datepicker.' . $language . '.js',
+				$this->getAssetsUrl() . '/js/locales/bootstrap-datepicker.' . $language . '.js',
 				\CClientScript::POS_END
 			);
 		}
