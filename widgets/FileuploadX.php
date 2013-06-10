@@ -7,6 +7,7 @@
 namespace wheels\widgets;
 
 use wheels\helpers\ArrayHelper;
+use wheels\helpers\AssetManager;
 
 /**
  * wheels\widgets\FileuploadX implements an extended version of jQuery-File-Upload JS plugin with views.
@@ -113,7 +114,6 @@ class FileuploadX extends Fileupload
 	 */
 	public function registerClientScript()
 	{
-
 		/* publish assets dir */
 		$assetsUrl = $this->getAssetsUrl('wheels.widgets.assets.fileupload');
 
@@ -124,7 +124,7 @@ class FileuploadX extends Fileupload
 
 		// Upgrade widget factory
 		// @todo remove when jquery.ui 1.9+ is fully integrated into stable Yii versions
-		$cs->registerScriptFile($assetsUrl . '/js/vendor/jquery.ui.widget.js');
+		AssetManager::registerScriptFile('jquery.ui.widget.js');
 
 		//The Templates plugin is included to render the upload/download listings
 		$cs->registerScriptFile($assetsUrl . '/js/tmpl.min.js', \CClientScript::POS_END);
@@ -133,9 +133,8 @@ class FileuploadX extends Fileupload
 			$cs->registerScriptFile($assetsUrl . '/js/load-image.min.js', \CClientScript::POS_END);
 			$cs->registerScriptFile($assetsUrl . '/js/canvas-to-blob.min.js', \CClientScript::POS_END);
 			// gallery :)
-			$this->registerVendorCss(YII_DEBUG ? "bootstrap-image-gallery.css" : "bootstrap-image-gallery.min.css");
-			$cs->registerScriptFile($this->getVendorAssetsUrl() . (YII_DEBUG ? "bootstrap-image-gallery.js" : "bootstrap-image-gallery.min.js"),
-				\CClientScript::POS_END);
+			AssetManager::registerCssFile(YII_DEBUG ? "bootstrap-image-gallery.css" : "bootstrap-image-gallery.min.css");
+			AssetManager::registerScriptFile((YII_DEBUG ? "bootstrap-image-gallery.js" : "bootstrap-image-gallery.min.js"));
 		}
 		//The Iframe Transport is required for browsers without support for XHR file uploads
 		$cs->registerScriptFile($assetsUrl . 'jquery.iframe-transport.js');

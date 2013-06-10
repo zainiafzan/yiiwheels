@@ -30,10 +30,6 @@ class Widget extends \CWidget
 	 * @var string holds a reference to the plugin assets url
 	 */
 	private $_assetsUrl;
-	/**
-	 * @var string holds a reference to the vendor assets url. Extra libraries and js utilities.
-	 */
-	private $_vendorUrl;
 
 
 	/**
@@ -139,33 +135,6 @@ class Widget extends \CWidget
 		/* @var  \CClientScript $cs */
 		$cs = \Yii::app()->clientScript;
 		$url = $this->getAssetsUrl($alias) . '/css/' . $filename;
-		$cs->registerCssFile($url);
-	}
-
-	/**
-	 * Returns the url to the published assets folder.
-	 * @return string the url.
-	 */
-	protected function getVendorAssetsUrl()
-	{
-		if (isset($this->_vendorUrl))
-			return $this->_vendorUrl;
-		else {
-			$assetsPath = \Yii::getPathOfAlias('wheels.widgets.assets.vendor');
-			$assetsUrl = \Yii::app()->assetManager->publish($assetsPath, true, -1, YII_DEBUG);
-			return $this->_vendorUrl = $assetsUrl;
-		}
-	}
-
-	/**
-	 * Registers a css file
-	 * @param string $filename the css file to register
-	 */
-	protected function registerVendorCss($filename)
-	{
-		/* @var  \CClientScript $cs */
-		$cs = \Yii::app()->clientScript;
-		$url = $this->getVendorAssetsUrl() . '/css/' . $filename;
 		$cs->registerCssFile($url);
 	}
 }

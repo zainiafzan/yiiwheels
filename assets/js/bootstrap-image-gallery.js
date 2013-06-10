@@ -19,7 +19,7 @@
         define([
             'jquery',
             'load-image',
-            '../.'
+            '../'
         ], factory);
     } else {
         // Browser globals:

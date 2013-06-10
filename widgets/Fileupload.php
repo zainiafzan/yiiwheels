@@ -7,6 +7,7 @@
 namespace wheels\widgets;
 
 use wheels\helpers\ArrayHelper;
+use wheels\helpers\AssetManager;
 
 /**
  * wheels\widgets\Fileupload implements jQuery-File-Upload JS plugin.
@@ -69,10 +70,11 @@ class Fileupload extends Input
 		/* @var $cs \CClientScript */
 		$cs = \Yii::app()->getClientScript();
 
-		$cs->registerCssFile($assetsUrl . '/css/jquery.fileupload-ui.css');
-		$cs->registerScriptFile($assetsUrl . '/js/vendor/jquery.ui.widget.js');
-		$cs->registerScriptFile($assetsUrl . '/js/jquery.iframe-transport.js');
-		$cs->registerScriptFile($assetsUrl . '/js/jquery.fileupload.js');
+		AssetManager::registerScriptFile('jquery.ui.widget.js');
+
+		$cs->registerCssFile($assetsUrl . '/css/jquery.fileupload-ui.css')
+			->registerScriptFile($assetsUrl . '/js/jquery.iframe-transport.js')
+			->registerScriptFile($assetsUrl . '/js/jquery.fileupload.js');
 
 		$this->registerPlugin('fileupload');
 	}

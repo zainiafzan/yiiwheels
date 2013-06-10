@@ -7,6 +7,7 @@
 namespace wheels\widgets;
 
 use wheels\helpers\ArrayHelper;
+use wheels\helpers\AssetManager;
 
 /**
  * wheels\widgets\Daterange
@@ -104,7 +105,7 @@ class Daterange extends Input
 		/* @var \CClientScript $cs */
 		$cs = \Yii::app()->getClientScript();
 		/* register required moment.js */
-		$cs->registerScriptFile($this->getVendorAssetsUrl() . '/js/moment.min.js', \CClientScript::POS_END);
+		AssetManager::registerScriptFile('moment.min.js');
 		$cs->registerScriptFile($assetsUrl . '/js/daterangepicker.js', \CClientScript::POS_END);
 		$cs->registerCssFile($assetsUrl . '/css/daterangepicker.css');
 

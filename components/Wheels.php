@@ -1,34 +1,28 @@
 <?php
 /**
- * YiiWheels class file.
- * @author Antonio Ramirez <amigo.cobos@gmail.com>
- * @copyright Copyright &copy; 2amigos.us 2013-
+ * @link http://2amigos.us/
+ * @copyright Copyright (c) 2013 2amigOS! Consulting Group  LLC
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
- * @package yiiwheels
  */
+namespace wheels\components;
 
-class YiiWheels extends CApplicationComponent
+/**
+ * wheels\components\Wheels is an application component to ease the task of registering bootstrap files.
+ *
+ * @author Antonio Ramirez <amigo.cobos@gmail.com>
+ * @package wheels\components
+ * @since 1.0
+ */
+class Wheels extends CApplicationComponent
 {
-    /**
-     * @var array the HTML options for the view container tag.
-     */
-    public $htmlOptions = array();
-
     /**
      * @var array $assetsJs of javascript library names to be registered when initializing the library.
      */
     public $assetsJs = array();
-
     /**
      * @var array $assetsCss of style library names to be registered when initializing the library.
      */
     public $assetsCss = array();
-
-    /**
-     * @var TbApi $_api
-     */
-    protected $_api;
-
     /**
      * @var string holds the published assets
      */
@@ -37,26 +31,17 @@ class YiiWheels extends CApplicationComponent
 
     /**
      * Widget's initialization
-     * @throws CException
+     * @throws \CException
      */
     public function init()
     {
-        $this->_api = Yii::app()->getComponent('bootstrap');
-
-        if (null === $this->_api) {
-            throw new CException(Yii::t('zii', '"YiiWheels" must work in conjunction with "YiiStrap".'));
-        }
-
         /* ensure all widgets - plugins are accessible to the library */
-        Yii::import('bootstrap.widgets.*');
-        /* ensure common behavior is also accessible to the library */
-        Yii::import('yiiwheels.behaviors.WhPlugin');
+        \Yii::import('wheels.widgets.*');
 
         /* register css assets */
         foreach ($this->assetsCss as $css) {
             $this->registerAssetCss($css);
         }
-
         /* register js assets */
         foreach ($this->assetsJs as $js) {
             $this->registerAssetJs($js);
@@ -83,8 +68,8 @@ class YiiWheels extends CApplicationComponent
             return $this->_assetsUrl;
         } else {
             $forceCopyAssets = $this->getApi()->forceCopyAssets;
-            $path            = Yii::getPathOfAlias('yiiwheels');
-            $assetsUrl       = Yii::app()->assetManager->publish(
+            $path            = \Yii::getPathOfAlias('wheels');
+            $assetsUrl       = \Yii::app()->assetManager->publish(
                 $path . DIRECTORY_SEPARATOR . 'assets',
                 false,
                 -1,

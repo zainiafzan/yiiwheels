@@ -7,6 +7,7 @@
 namespace wheels\widgets;
 
 use wheels\helpers\ArrayHelper;
+use wheels\helpers\AssetManager;
 
 /**
  * WhDateRangePicker widget class
@@ -221,8 +222,9 @@ class RangeSlider extends Input
 		$cs->registerCoreScript('jquery')
 			->registerCoreScript('jquery.ui')
 			->registerScriptFile($assetsUrl . '/js/' . $jsFile)
-			->registerScriptFile($this->getVendorAssetsUrl() . '/js/jquery.mousewheel.min.js', \CClientScript::POS_END)
 			->registerCssFile($assetsUrl . '/css/' . $this->theme . '.css');
+
+		AssetManager::registerScriptFile('jquery.mousewheel.min.js');
 
 		$options = !empty($this->clientOptions) ? \CJavaScript::encode($this->clientOptions) : '';
 
