@@ -49,7 +49,6 @@ class Timepicker extends Input
         $cs->registerCssFile($assetsUrl . '/css/bootstrap-timepicker.min.css')
 			->registerScriptFile($assetsUrl . '/js/bootstrap-timepicker.min.js');
 
-        /* initialize plugin */
         $this->registerPlugin('timepicker');
     }
 }
