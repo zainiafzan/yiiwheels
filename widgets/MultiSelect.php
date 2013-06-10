@@ -66,8 +66,8 @@ class MultiSelect extends Input
         /* @var $cs \CClientScript */
         $cs = \Yii::app()->getClientScript();
 
-        $cs->registerCssFile($assetsUrl . '/css/bootstrap-multiselect.css');
-        $cs->registerScriptFile($assetsUrl . '/js/bootstrap-multiselect.js');
+        $cs->registerCssFile($assetsUrl . '/css/bootstrap-multiselect.css')
+			->registerScriptFile($assetsUrl . '/js/bootstrap-multiselect.js');
 
 		$this->registerPlugin('multiselect');
     }

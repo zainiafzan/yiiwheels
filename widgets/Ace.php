@@ -91,7 +91,7 @@ class Ace extends Input
 	public function registerClientScript()
 	{
 		/* publish assets dir */
-		$path      = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'assets';
+		$path = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'assets';
 		$assetsUrl = $this->getAssetsUrl($path);
 
 		/* @var $cs CClientScript */
@@ -103,16 +103,14 @@ class Ace extends Input
 		/* Global value that will hold the editor */
 		$cs->registerScript(uniqid(__CLASS__ . '#' . $id, true), 'var ' . $id . ';', \CClientScript::POS_HEAD);
 
-		ob_start();
-		ob_implicit_flush(false);
 		/* initialize plugin */
 		$js = array();
 		$js[] = $id . '= ace.edit("' . $id . '");';
 		$js[] = $id . '.setTheme("ace/theme/' . $this->theme . '");';
 		$js[] = $id . '.getSession().setMode("ace/mode/' . $this->mode . '");';
 
-		if (!empty($this->events) && is_array($this->events)) {
-			foreach ($this->events as $name => $handler) {
+		if (!empty($this->clientEvents) && is_array($this->evenclientEventsts)) {
+			foreach ($this->clientEvents as $name => $handler) {
 				$handler = ($handler instanceof \CJavaScriptExpression)
 					? $handler
 					: new \CJavaScriptExpression($handler);
@@ -121,6 +119,8 @@ class Ace extends Input
 			}
 		}
 
-		$cs->registerScript(uniqid(__CLASS__ . '#ReadyJS' . $id, true), implode("\n", $js));
+		$js = implode("\n", $js);
+
+		$cs->registerScript(md5($js), $js);
 	}
 }
