@@ -46,6 +46,9 @@ class WhHighCharts extends CWidget
      * @var array $htmlOptions the HTML tag attributes
      */
     public $htmlOptions = array();
+    
+    
+    public $options = array();
 
     /**
      * Widget's initialization method
